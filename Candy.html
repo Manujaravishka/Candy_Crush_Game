@@ -3,13 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candy Crush</title>
+    <title>Enhanced Candy Crush Game</title>
     <link rel="stylesheet" href="Candy.css">
     <script src="Candy.js"></script>
 </head>
 <body>
-    <h1> Score : <span id="score">0</span></h1>
-    <div id="board"></div>
+    <h1>🍭 Enhanced Candy Crush 🍬</h1>
     
+    <div id="game-container">
+        <div id="game-info">
+            <div id="score">Score: 0</div>
+            <div id="level">Level: 1</div>
+            <div id="moves">Moves: 30</div>
+            <div id="target">Target: 1000</div>
+        </div>
+        
+        <div id="board"></div>
+        
+        <div id="game-info">
+            <div style="font-size: 1.1em; margin-bottom: 15px;">🎯 Objectives</div>
+            <div style="font-size: 0.9em; line-height: 1.5;">
+                • Match 3+ candies<br>
+                • Reach target score<br>
+                • Use moves wisely<br>
+                • Create combos!
+            </div>
+        </div>
+    </div>
+    
+    <div id="controls">
+        <button onclick="restartGame()">🔄 Restart Game</button>
+        <button onclick="shuffleBoard()">🔀 Shuffle Board</button>
+        <button onclick="togglePause()">⏸️ Pause</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

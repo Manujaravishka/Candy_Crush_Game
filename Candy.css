@@ -1,23 +1,207 @@
 body {
-    background: url("./background.jpg") no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Arial', sans-serif;
+    color: white;
     text-align: center;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+#game-info {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid rgba(255,255,255,0.2);
+    min-width: 200px;
+}
+
+#score, #level, #moves, #target {
+    font-size: 1.2em;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
 }
 
 #board {
     width: 450px;
     height: 450px;
-    background-color: skyblue;
-    border: 5px solid black;
-    border-radius: 10px;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    border: 5px solid #fff;
+    border-radius: 20px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
 }
 
 #board img {
     width: 50px;
     height: 50px;
+    cursor: grab;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    border-radius: 8px;
+}
+
+#board img:hover {
+    transform: scale(1.1);
+}
+
+#board img:active {
+    cursor: grabbing;
+}
+
+.candy-blue { 
+    background: radial-gradient(circle, #4fc3f7, #29b6f6); 
+}
+
+.candy-orange { 
+    background: radial-gradient(circle, #ffb74d, #ff9800); 
+}
+
+.candy-green { 
+    background: radial-gradient(circle, #81c784, #66bb6a); 
+}
+
+.candy-yellow { 
+    background: radial-gradient(circle, #fff176, #ffeb3b); 
+}
+
+.candy-red { 
+    background: radial-gradient(circle, #e57373, #f44336); 
+}
+
+.candy-purple { 
+    background: radial-gradient(circle, #ba68c8, #9c27b0); 
+}
+
+#controls {
+    margin: 20px 0;
+}
+
+button {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 1em;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.combo-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffd93d;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    animation: comboAnimation 1.5s ease-out;
+}
+
+@keyframes comboAnimation {
+    0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.5); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.2); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleAnimation 1s ease-out forwards;
+}
+
+@keyframes particleAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) translate(var(--dx), var(--dy));
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    #game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #board {
+        width: 350px;
+        height: 350px;
+    }
+    
+    #board img {
+        width: 38px;
+        height: 38px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    #game-info {
+        min-width: 150px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 0.9em;
+    }
 }
